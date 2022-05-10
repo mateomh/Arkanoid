@@ -455,11 +455,11 @@ var __spreadArrays = void 0 && (void 0).__spreadArrays || function () {
 
 var createBricks = function createBricks() {
   return _setup.LEVEL.reduce(function (acum, element, i) {
-    var row = Math.floor(i + 1) / _setup.STAGE_COLS;
-
+    var row = Math.floor((i + 1) / _setup.STAGE_COLS);
     var col = i % _setup.STAGE_COLS;
     var x = _setup.STAGE_PADDING + col * (_setup.BRICK_WIDTH + _setup.BRICK_PADDING);
     var y = _setup.STAGE_PADDING + row * (_setup.BRICK_HEIGHT + _setup.BRICK_PADDING);
+    debugger;
     if (element === 0) return acum;
     return __spreadArrays(acum, [new _Brick.Brick(_setup.BRICK_WIDTH, _setup.BRICK_HEIGHT, {
       x: x,
@@ -553,7 +553,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40461" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40621" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
