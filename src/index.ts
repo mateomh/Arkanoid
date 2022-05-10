@@ -35,23 +35,37 @@ const setGameWin = (view: CanvasView) => {
 const gameLoop = (
   view: CanvasView,
   bricks: Brick[],
-  // paddle: Paddle,
+  paddle: Paddle,
   // ball: Ball
 ) => {
   view.clear();
   view.drawBricks(bricks);
+  view.drawSprite(paddle);
 
-  requestAnimationFrame(() => gameLoop(view, bricks));
+  // Move Paddle
+  if(paddle.paddleInsideLimits(view)) {
+    paddle.movePaddle();
+  }
+
+  requestAnimationFrame(() => gameLoop(view, bricks, paddle));
 }
 
 const startGame = (view: CanvasView) => {
   score = 0;
-  view.drawInfo('');
-  view.drawScore('0');
+  // view.drawInfo('');
+  // view.drawScore(0);
 
   const bricks = createBricks();
 
-  gameLoop(view, bricks);
+  const paddle = new Paddle(
+    PADDLE_WIDTH,
+    PADDLE_HEIGHT,
+    PADDLE_SPEED,
+    {x: PADDLE_STARTX, y: view.canvas.height - PADDLE_HEIGHT - 5},
+    PADDLE_IMAGE
+  );
+
+  gameLoop(view, bricks, paddle);
 }
 
 const view = new CanvasView("#playField");

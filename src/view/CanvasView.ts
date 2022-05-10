@@ -3,12 +3,6 @@ import { Paddle } from "~/sprites/Paddle";
 import { Ball } from "~/sprites/Ball";
 
 export class CanvasView {
-  clear: Function;
-  initStartButton: Function;
-  drawScore: Function;
-  drawInfo: Function;
-  drawSprite: Function;
-  drawBricks: Function;
   canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D | null;
   private scoreDisplay: HTMLObjectElement | null;
@@ -21,41 +15,41 @@ export class CanvasView {
     this.scoreDisplay = document.querySelector('#score');
     this.start = document.querySelector('#start');
     this.info = document.querySelector('#info');
+  }
 
-    this.clear = (): void => {
+  clear = (): void => {
       this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    this.initStartButton = (startFunction: (view: CanvasView) => void): void => {
-      this.start?.addEventListener('click', () => startFunction)
+  initStartButton = (startFunction: Function): void => {
+    this.start?.addEventListener('click', () => startFunction(this))
+  }
+
+  drawScore = (score: number): void => {
+    if(this.scoreDisplay) {
+      this.scoreDisplay.innerHTML = score.toString();
     }
+  }
 
-    this.drawScore = (score: number): void => {
-      if(this.scoreDisplay) {
-        this.scoreDisplay.innerHTML = score.toString();
-      }
-    }
+  drawInfo = (text: string): void => {
 
-    this.drawInfo = (text: string): void => {
+  }
 
-    }
+  drawSprite = (sprite: Brick | Paddle): void => {
+    if(!sprite) return;
 
-    this.drawSprite = (sprite: Brick): void => {
-      if(!sprite) return;
+    this.context?.drawImage(
+      sprite.image,
+      sprite.pos.x,
+      sprite.pos.y,
+      sprite.width,
+      sprite.height
+    );
+  }
 
-      this.context?.drawImage(
-        sprite.image,
-        sprite.pos.x,
-        sprite.pos.y,
-        sprite.width,
-        sprite.height
-      );
-    }
-
-    this.drawBricks = (bricks: Brick[]): void => {
-      bricks.forEach(brick => {
-        this.drawSprite(brick)
-      });
-    }
+  drawBricks = (bricks: Brick[]): void => {
+    bricks.forEach(brick => {
+      this.drawSprite(brick)
+    });
   }
 }
