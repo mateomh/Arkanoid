@@ -58,6 +58,7 @@ const gameLoop = (
 
   if(collidingBrick) {
     score += 1;
+    view.drawScore(score);
   }
 
   // Game over section
@@ -70,6 +71,7 @@ const gameLoop = (
 
 const startGame = (view: CanvasView) => {
   score = 0;
+  gameOver = false;
   view.drawInfo('');
   view.drawScore(0);
 

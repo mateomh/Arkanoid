@@ -653,6 +653,7 @@ var gameLoop = function gameLoop(view, bricks, paddle, ball, collision) {
 
   if (collidingBrick) {
     score += 1;
+    view.drawScore(score);
   } // Game over section
 
 
@@ -666,6 +667,7 @@ var gameLoop = function gameLoop(view, bricks, paddle, ball, collision) {
 
 var startGame = function startGame(view) {
   score = 0;
+  gameOver = false;
   view.drawInfo('');
   view.drawScore(0);
   var bricks = (0, _helpers.createBricks)();
