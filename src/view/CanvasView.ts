@@ -32,7 +32,7 @@ export class CanvasView {
   }
 
   drawInfo = (text: string): void => {
-
+    if (this.info) this.info.innerHTML = text;
   }
 
   drawSprite = (sprite: Brick | Paddle | Ball): void => {
