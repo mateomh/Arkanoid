@@ -28,6 +28,7 @@ export class Collision {
         } else {
           brick.energy -= 1;
         }
+        colliding = true;
       }
     })
 

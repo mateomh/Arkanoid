@@ -577,6 +577,8 @@ function () {
         } else {
           brick.energy -= 1;
         }
+
+        colliding = true;
       }
     });
     return colliding;
@@ -713,7 +715,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40621" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32795" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
